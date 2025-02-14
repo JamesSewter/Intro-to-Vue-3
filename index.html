@@ -6,14 +6,26 @@
     <!-- Import Styles -->
     <link rel="stylesheet" href="./assets/styles.css" />
     <!-- Import Vue.js -->
-    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
     <div id="app">
-      <h1>Product goes here</h1>
+      <h1 class="product-info">{{product}}</h1>
+      <div class="product-image">
+        <!-- v-bind dynamically binds an attribute to an expression - shorthand shown -->
+        <img
+          :src="image"
+        />
+      </div>
+      <p>{{description}}</p>
+      <a :href="url" target="_blank" rel="noopener noreferrer">More about socks here!</a> <!-- rel improves security prevent the new tab accessing the original pages window opener -->
     </div>
 
-    <!-- Import Js -->
+    <!-- Import App -->
     <script src="./main.js"></script>
+    <!-- Mount App -->
+    <script>
+      const mountedApp = app.mount("#app")
+    </script>
   </body>
 </html>
