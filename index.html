@@ -10,17 +10,45 @@
   </head>
   <body>
     <div id="app">
-      <h1 class="product-info">{{product}}</h1>
-      <div class="product-image">
-        <!-- v-bind dynamically binds an attribute to an expression - shorthand shown -->
-        <img
-          :src="image"
-        />
-      </div>
-      <p>{{description}}</p>
-      <a :href="url" target="_blank" rel="noopener noreferrer">More about socks here!</a> <!-- rel improves security prevent the new tab accessing the original pages window opener -->
-    </div>
+      <div class="" nav-bar></div>
+      <div class="cart">Cart{{cart}}</div>
+      <div class="product-display">
+        <div class="product-container">
+          <div class="product-image">
+            <!-- v-bind dynamically binds an attribute to an expression - shorthand shown -->
+            <img :src="image" />
+          </div>
+          <div class="product-info">
+            <h1>{{product}}</h1>
+            <p id="sale" v-if="onSale">
+              On Sale now - 20% off 100 percent of socks.
+            </p>
+            <p v-if="inventory > 10">In Stock</p>
+            <p v-else-if="inventory <= 10 && inventory > 0">
+              Almost sold out - be quick!
+            </p>
+            <p v-else>Sold out :(</p>
 
+            <p>{{description}}</p>
+            <a :href="url" target="_blank" rel="noopener noreferrer"
+              >More about socks here!</a
+            ><!-- rel improves security prevent the new tab accessing the original pages window opener -->
+          </div>
+          <div
+            v-for="variant in variants"
+            :key="variant.id"
+            @mouseover="updateImage(variant.image)"
+          >
+            <ul>
+              {{ variant.color }}
+            </ul>
+          </div>
+          <button class="button" v-on:click="addToCart">Add to Cart</button>
+          <button class="button" v-on:click="decrementFromCart">Remove item</button>
+          <button class="button" v-on:click="emptyCart">Delete cart</button>
+        </div>
+      </div>
+    </div>
     <!-- Import App -->
     <script src="./main.js"></script>
     <!-- Mount App -->

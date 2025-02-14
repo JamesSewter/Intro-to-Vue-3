@@ -165,6 +165,10 @@ ul {
   list-style-type: none;
 }
 
+#sale {
+  color: red;
+}
+
 @media only screen and (max-width: 600px) {
   .container {
     flex-direction: column;
